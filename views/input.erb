@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Input</title>
+</head>
+<body>
+	<h2>Please enter possilbe ISBN numbers below.</h2>
+	<form method="post" action="input">
+		<input type="text" name="isbn">
+		<input type="submit" value="Submit">
+	</form>
+
+<form action="index" method="post">
+    <input type="submit" value="Click to view ISBN's" name="Submit">
+</form>
+
+
+
+<% session[:isbn].each do |num|  %>
+ <h2><%= num %></h2>
+<% end %>
+
+
+</body>
+</html>

@@ -1,0 +1,6 @@
+<h1>This is the index</h1>
+
+
+<% CSV.foreach("isbn_numbers.csv") do |row| %>
+<p><%= row[0] %>: <%= row[1] %></p>
+<%end%>
