@@ -1,6 +1,5 @@
 require "sinatra"
 enable :sessions
-require "sinatra/reloader"
 require "csv"
 
 def prepare(num)
