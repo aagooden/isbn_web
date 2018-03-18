@@ -152,7 +152,7 @@ post "/index" do
 		is_valid = info[0][1]
 		f_name = info[1]
 		l_name = info[2]
-		CSV.open("isbn_numbers.csv", "a+") do |csv|
+		CSV.open("http://s3.amazonaws.com/isbnnumbers", "a+") do |csv|
 
 		csv << [num, is_valid, f_name, l_name]
 		end
