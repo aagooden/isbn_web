@@ -1,1 +1,1 @@
-web: bundle exec ruby isbn_web.rb
+web: bundle exec ruby app.rb
