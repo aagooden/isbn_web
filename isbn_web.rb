@@ -1,111 +1,13 @@
+require 'rubygems'
+require 'aws-sdk'
+require 'csv'
 require "sinatra"
+require_relative "isbn_functions"
 enable :sessions
-require "csv"
 
-def prepare(num)
-
-#preparing the number by getting rid of spaces
-	puts "This is the number #{num}"
-	num.delete!(" ")
-	num.delete!("-")
-	return num
-end
-
-
-def validate_length(num)
-	puts "hit the validate length function"
-	valid = false
-
-	if num.length == 10 || num.length == 13
-		valid = true
-	end
-
-	return valid
-end
-
-
-def validate_ten_number(num)
-	valid = true
-
-#setting my check sum here... if it is "x" or "X" check sum is 10 else check is converted to integer for following calculation
-	check = num[num.length - 1]
-
-	if check == "x" || check =="X"
-		check = 10
-	else
-		check = check.to_i
-	end
-
-
-#performing validation math
-
-# counter will represent the num's "position (1-length) which
-# will be multiplied by char which is the actual integer value of the num
-# num.length - 2 is used to account for the index shift AND the fact that the last digit in num is the check sum
-	counter = 1
-	sum = 0
-	for x in (0..num.length - 2) do
-		char = num[x].to_i
-		sum = sum + (char * counter)
-		counter +=1 
-	end
-
-#final comparison for validation
-	sum = sum % 11
-	if sum == check
-		valid = true
-	else
-		valid = false
-	end
-
-	return valid
-
-end
-
-def validate_13_number(num)
-
-#defining the check value
-	check = num[num.length - 1]
-	check = check.to_i
-
-#deleting the last digit for easier calculation
-	num[num.length - 1] = ""
-
-	switch = true #switches from true to false to flag the correct multiplier
-	multiplier = 1
-	sum = 0
-
-#main validation calculation
-	num.each_char do |char|
-		if switch == true 
-			multiplier = 1
-		else
-			multiplier = 3
-		end
-
-	sum = sum + (char.to_i * multiplier)
-		switch = !switch
-	end
-
-
-	sum = (10 - (sum % 10)) % 10
-
-
-
-	if sum == check
-		valid = true
-	else
-		valid = false
-	end
-
-
-	return valid
-end
-
-############################################################################
 	
 get "/" do
-	session[:isbn] = []
+	session[:isbn] = Array.new
 	erb :welcome
 end
 
@@ -139,52 +41,48 @@ post "/input" do
 				is_valid = "Invalid"
 			end
 
-		session[:isbn] << [[params[:isbn], is_valid], session[:f_name], session[:l_name]]
+		session[:isbn] << [num, is_valid, session[:f_name], session[:l_name]]
 	erb :input
 
 end
 
 post "/index" do
 
-
+	$text_array = Array.new
+	text = get_b()
 	session[:isbn].each do |info|
-		num = info[0][0]
-		is_valid = info[0][1]
-		f_name = info[1]
-		l_name = info[2]
-		CSV.open("http://s3.amazonaws.com/isbnnumbers", "a+") do |csv|
+		num = info[0]
+		is_valid = info[1]
+		f_name = info[2]
+		l_name = info[3]
+		text = text + "#{num},#{is_valid},#{f_name},#{l_name}\n"
+		
+	end
 
-		csv << [num, is_valid, f_name, l_name]
-		end
+	push_b(text) #send text to AWS bucket
+
+
+		#pull whole csv file from bucket and put into array for index 
+	s3 = Aws::S3::Client.new
+	resp = s3.get_object(bucket: 'isbnnumbers', key:'isbn_numbers.csv')
+	all_numbers = resp.body
+
+	CSV.parse(all_numbers) do |row|
+		if row == [] || row == [" "]
+		else
+		$text_array.push(row)
+	end
 	end
 
 	redirect "/index"
 end
 
 
-
 get "/index" do
 
-
-
-
-erb :index
+	erb :index
 
 end
-
-
-
-
-
-
-
-
-
-
-#arn:aws:s3:::isbnnumbers
-
-
-
 
 
 
