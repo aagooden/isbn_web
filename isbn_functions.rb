@@ -1,4 +1,4 @@
-load "./local_env.rb" 
+load "./local_env.rb" if File.exist?("./local_env.rb")
 
 def push_b(text)
   Aws::S3::Client.new(
