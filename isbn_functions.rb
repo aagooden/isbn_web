@@ -3,7 +3,8 @@ load "./local_env.rb" if File.exist?("./local_env.rb")
 def push_b(text)
   Aws::S3::Client.new(
   access_key_id: ENV['AWS_ACCESS_KEY_ID'],
-  secret_access_key: ENV['AWS_SECRET_ACCESS_KEY']
+  secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'],
+  force_path_style: 'true'
    )
  
 	file = "isbn_numbers.csv"
