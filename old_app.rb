@@ -1,36 +1,6 @@
-load "./local_env.rb" if File.exist?("./local_env.rb")
-
-def connect()
-  Aws::S3::Client.new(
-  access_key_id: ENV['AWS_ACCESS_KEY_ID'],
-  secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'],
-  force_path_style: 'true'
-   )
- end
-	
-def push_b(text)
-	connect()
-	file = "isbn_numbers.csv"
-	bucket = 'isbnnumbers'
-	s3 = Aws::S3::Resource.new(region: 'us-east-2')
-	obj = s3.bucket(bucket).object(file)
-
-	obj.put(body: text + "\n")
-end
-
-
-def get_b()
-	connect()
-  	s3 = Aws::S3::Client.new
-
-	resp = s3.get_object(bucket: 'isbnnumbers', key:'isbn_numbers.csv')
-
-	text = resp.body.read
-
-	return text
-
-end
-
+require "sinatra"
+enable :sessions
+require "csv"
 
 def prepare(num)
 
@@ -38,7 +8,6 @@ def prepare(num)
 	puts "This is the number #{num}"
 	num.delete!(" ")
 	num.delete!("-")
-
 	return num
 end
 
@@ -132,3 +101,112 @@ def validate_13_number(num)
 
 	return valid
 end
+
+############################################################################
+	
+get "/" do
+	session[:isbn] = []
+	erb :welcome
+end
+
+get "/input" do
+	session[:f_name] = params[:f_name]
+	session[:l_name] = params[:l_name]
+
+	
+	# 
+	erb :input
+	# redirect "/input"
+end
+
+post "/input" do
+
+		num = params[:isbn]
+		prepared = prepare(num)
+
+		length_valid = validate_length(prepared)
+			if length_valid == false
+				is_valid = false
+			elsif prepared.length == 10
+				is_valid = validate_ten_number(prepared)
+			elsif prepared.length == 13
+				is_valid = validate_13_number(prepared)
+			end
+
+			if is_valid == true
+				then is_valid = "Valid"
+			else
+				is_valid = "Invalid"
+			end
+
+		session[:isbn] << [[params[:isbn], is_valid], session[:f_name], session[:l_name]]
+	erb :input
+
+end
+
+post "/index" do
+
+
+	session[:isbn].each do |info|
+		num = info[0][0]
+		is_valid = info[0][1]
+		f_name = info[1]
+		l_name = info[2]
+		CSV.open("http://s3.amazonaws.com/isbnnumbers", "a+") do |csv|
+
+		csv << [num, is_valid, f_name, l_name]
+		end
+	end
+
+	redirect "/index"
+end
+
+
+
+get "/index" do
+
+
+
+
+erb :index
+
+end
+
+
+
+
+
+
+
+
+
+
+#arn:aws:s3:::isbnnumbers
+
+
+
+
+
+
+
+
+
+
+
+
+#arn:aws:s3:::isbnnumbers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
