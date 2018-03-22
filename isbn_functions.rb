@@ -12,6 +12,7 @@ def push_b(text)
 	connect()
 	file = "isbn_numbers.csv"
 	bucket = 'isbnnumbers'
+	p "Hit number 1 in the push_b"
 	s3 = Aws::S3::Resource.new(region: 'us-east-2')
 	obj = s3.bucket(bucket).object(file)
 
@@ -21,7 +22,7 @@ end
 
 def get_b()
 	connect()
-  	s3 = Aws::S3::Client.new
+  	s3 = Aws::S3::Client.new(region: 'us-east-2')
 
 	resp = s3.get_object(bucket: 'isbnnumbers', key:'isbn_numbers.csv')
 
