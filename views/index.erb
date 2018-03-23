@@ -1,15 +1,21 @@
 
-<h2>These are your numbers, <%= session[:f_name] %></h2>
+<h1>These are your numbers, <%= session[:f_name] %></h1>
 
-<%$text_array.each do |row| %>
-<%if row[2] == session[:f_name] && row[3] == session[:l_name]%> 
-<p><%=row[0] %>: <%=row[1]%></p>
-<% end %>
-<% end %>
+	<%CSV.foreach("local_isbn.csv") do |row|%>
+		<%if row == [] || row == [" "]%>
+		<%elsif row[2] == session[:f_name] && row[3] == session[:l_name]%> 
+			<p><%=row[0] %>: <%=row[1]%></p>
+		<% end %>
+	<% end %>
 
 
-<h2>Here are all the numbers</h2>
+<h1>Here are all the numbers</h1>
 
-<%$text_array.each do |row| %>
-<p><%=row[0] %>: <%=row[1]%></p>
-<% end %>
+	<%CSV.foreach("local_isbn.csv") do |row|%>
+		<%if row == [] || row == [" "]%>
+		<%else%>
+			<p><%=row[0] %>: <%=row[1]%></p>
+		<% end %>
+	<% end %>
+
+

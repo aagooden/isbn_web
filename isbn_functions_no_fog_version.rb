@@ -1,52 +1,36 @@
 load "./local_env.rb" if File.exist?("./local_env.rb")
 
 def connect()
-connection = Fog::Storage.new({
-  :provider                 => 'AWS',
-  :aws_access_key_id        => ENV['AWS_ACCESS_KEY_ID'],
-  :aws_secret_access_key    => ENV['AWS_SECRET_ACCESS_KEY'],
-  :region 					=> 'us-east-2'
-})
+  Aws::S3::Client.new(
+  access_key_id: ENV['AWS_ACCESS_KEY_ID'],
+  secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'],
+  force_path_style: 'true'
+   )
  end
-
-def get_file()
-	bucket = connect().directories.new(key: 'isbnnumbers')
-
-	file = bucket.files.get('isbn_numbers.csv')
-
 	
+def push_b(text)
+	connect()
+	file = "isbn_numbers.csv"
+	bucket = 'isbnnumbers'
+	p "Hit number 1 in the push_b"
+	s3 = Aws::S3::Resource.new(region: 'us-east-2')
+	obj = s3.bucket(bucket).object(file)
 
-
- #  	s3 = Aws::S3::Client.new(region: 'us-east-2')
-
-	# resp = s3.get_object(bucket: 'isbnnumbers', key:'isbn_numbers.csv')
-
-	# text = resp.body.read
-
-	# return text
-
-end
-
-	
-def save_file()
-	bucket = connect().directories.new(key: 'isbnnumbers')
-
-	bucket.files.create(key: "isbn_numbers.csv", body: File.open('local_isbn.csv'), public: true) #this creates a new file called "isbn_numbers.csv" in the bucket that is defined in bucket= .... with the contents of "local_isbn.csv"
-
-
-
-
-	# file = "isbn_numbers.csv"
-	# bucket = 'isbnnumbers'
-	# p "Hit number 1 in the push_b"
-	# s3 = Aws::S3::Resource.new(region: 'us-east-2')
-	# obj = s3.bucket(bucket).object(file)
-
-	# obj.put(body: text)
+	obj.put(body: text)
 end
 
 
+def get_b()
+	connect()
+  	s3 = Aws::S3::Client.new(region: 'us-east-2')
 
+	resp = s3.get_object(bucket: 'isbnnumbers', key:'isbn_numbers.csv')
+
+	text = resp.body.read
+
+	return text
+
+end
 
 
 def prepare(num)

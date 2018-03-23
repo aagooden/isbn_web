@@ -1,5 +1,5 @@
 require 'rubygems'
-require 'fog'
+require 'aws-sdk'
 require 'csv'
 require "sinatra"
 require_relative "isbn_functions"
@@ -48,45 +48,31 @@ end
 
 post "/index" do
 
-#replace contents of local_isbn.csv with contents of AWS isbn_numbers.csv
-	aws_file = get_file()
-	contents = aws_file.body
-
- 	File.open('local_isbn.csv', "w+") do |file|
-    file.puts(contents)
-    file.close
-	end
-
-#push the contents of session[:isbn] into the local_isbn.csv file
+	$text_array = Array.new
+	text = get_b()
 	session[:isbn].each do |info|
 		num = info[0]
 		is_valid = info[1]
 		f_name = info[2]
 		l_name = info[3]
-
-		File.open('local_isbn.csv', "a+") do |file|
-	    	file.puts("#{num},#{is_valid},#{f_name},#{l_name}\n")
-		end
+		text = text + "#{num},#{is_valid},#{f_name},#{l_name}\n"
 		
 	end
 
-
-
-
-	save_file() #save local file to AWS bucket
+	push_b(text) #send text to AWS bucket
 
 
 		#pull whole csv file from bucket and put into array for index 
-	# s3 = Aws::S3::Client.new
-	# resp = s3.get_object(bucket: 'isbnnumbers', key:'isbn_numbers.csv')
-	# all_numbers = resp.body
+	s3 = Aws::S3::Client.new
+	resp = s3.get_object(bucket: 'isbnnumbers', key:'isbn_numbers.csv')
+	all_numbers = resp.body
 
-	# CSV.parse(all_numbers) do |row|
-	# 	if row == [] || row == [" "]
-	# 	else
-	# 	$text_array.push(row)
-	# end
-	# end
+	CSV.parse(all_numbers) do |row|
+		if row == [] || row == [" "]
+		else
+		$text_array.push(row)
+	end
+	end
 
 	redirect "/index"
 end
@@ -103,17 +89,9 @@ end
 
 
 
-def store_name(filename, string)
-  File.open(filename, "a+") do |file|
-    file.puts(string)
-  end
-end
 
 
-get "/pairs" do 
-  	if File.exist?("names.txt")
-	File.delete("names.txt")
-	File.new("names.txt", "w+")
-	end
-	erb :new
-end
+
+
+
+
