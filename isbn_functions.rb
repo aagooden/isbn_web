@@ -1,30 +1,20 @@
 load "./local_env.rb" if File.exist?("./local_env.rb")
 
 def connect()
-connection = Fog::Storage.new({
-  :provider                 => 'AWS',
-  :aws_access_key_id        => ENV['AWS_ACCESS_KEY_ID'],
-  :aws_secret_access_key    => ENV['AWS_SECRET_ACCESS_KEY'],
-  :region 					=> 'us-east-2'
-})
- end
+	connection = Fog::Storage.new({
+	  :provider                 => 'AWS',
+	  :aws_access_key_id        => ENV['AWS_ACCESS_KEY_ID'],
+	  :aws_secret_access_key    => ENV['AWS_SECRET_ACCESS_KEY'],
+	  :region 					=> 'us-east-2'
+	})
+end
+
 
 def get_file()
 	bucket = connect().directories.new(key: 'isbnnumbers')
 
 	file = bucket.files.get('isbn_numbers.csv')
-
-	
-
-
- #  	s3 = Aws::S3::Client.new(region: 'us-east-2')
-
-	# resp = s3.get_object(bucket: 'isbnnumbers', key:'isbn_numbers.csv')
-
-	# text = resp.body.read
-
-	# return text
-
+	#this gets "isbn_numbers.csv" file from AWS
 end
 
 	
@@ -32,21 +22,7 @@ def save_file()
 	bucket = connect().directories.new(key: 'isbnnumbers')
 
 	bucket.files.create(key: "isbn_numbers.csv", body: File.open('local_isbn.csv'), public: true) #this creates a new file called "isbn_numbers.csv" in the bucket that is defined in bucket= .... with the contents of "local_isbn.csv"
-
-
-
-
-	# file = "isbn_numbers.csv"
-	# bucket = 'isbnnumbers'
-	# p "Hit number 1 in the push_b"
-	# s3 = Aws::S3::Resource.new(region: 'us-east-2')
-	# obj = s3.bucket(bucket).object(file)
-
-	# obj.put(body: text)
 end
-
-
-
 
 
 def prepare(num)
@@ -69,6 +45,15 @@ def validate_length(num)
 	end
 
 	return valid
+end
+
+def validate_is_number(num)
+	check_num = ""
+	for x in (0...num.length - 1)
+		check_num[x] = num[x]
+	end
+	result = check_num =~ /\A\d+\z/ ? true : false
+	return result
 end
 
 
@@ -106,6 +91,7 @@ def validate_ten_number(num)
 		valid = false
 	end
 
+
 	return valid
 
 end
@@ -116,22 +102,20 @@ def validate_13_number(num)
 	check = num[num.length - 1]
 	check = check.to_i
 
-#deleting the last digit for easier calculation
-	num[num.length - 1] = ""
 
 	switch = true #switches from true to false to flag the correct multiplier
 	multiplier = 1
 	sum = 0
 
 #main validation calculation
-	num.each_char do |char|
+	for x in (0...num.length - 1) do
 		if switch == true 
 			multiplier = 1
 		else
 			multiplier = 3
 		end
 
-	sum = sum + (char.to_i * multiplier)
+	sum = sum + (num[x].to_i * multiplier)
 		switch = !switch
 	end
 

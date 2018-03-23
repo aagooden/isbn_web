@@ -8,6 +8,7 @@ enable :sessions
 	
 get "/" do
 	session[:isbn] = Array.new
+	session[:message] = ""
 	erb :welcome
 end
 
@@ -23,7 +24,12 @@ end
 
 post "/input" do
 
+		if params[:isbn] == ""
+			session[:message] = "Please enter a number"
+			redirect "/retry"
+		end
 		num = params[:isbn]
+
 		prepared = prepare(num)
 
 		length_valid = validate_length(prepared)
@@ -35,8 +41,10 @@ post "/input" do
 				is_valid = validate_13_number(prepared)
 			end
 
-			if is_valid == true
-				then is_valid = "Valid"
+			result = validate_is_number(num)
+
+			if is_valid == true && result == true
+				is_valid = "Valid"
 			else
 				is_valid = "Invalid"
 			end
@@ -44,6 +52,10 @@ post "/input" do
 		session[:isbn] << [num, is_valid, session[:f_name], session[:l_name]]
 	erb :input
 
+end
+
+get "/retry" do
+	erb :input
 end
 
 post "/index" do
@@ -70,24 +82,6 @@ post "/index" do
 		
 	end
 
-
-
-
-	save_file() #save local file to AWS bucket
-
-
-		#pull whole csv file from bucket and put into array for index 
-	# s3 = Aws::S3::Client.new
-	# resp = s3.get_object(bucket: 'isbnnumbers', key:'isbn_numbers.csv')
-	# all_numbers = resp.body
-
-	# CSV.parse(all_numbers) do |row|
-	# 	if row == [] || row == [" "]
-	# 	else
-	# 	$text_array.push(row)
-	# end
-	# end
-
 	redirect "/index"
 end
 
@@ -97,10 +91,6 @@ get "/index" do
 	erb :index
 
 end
-
-
-
-
 
 
 def store_name(filename, string)

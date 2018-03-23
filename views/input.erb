@@ -4,9 +4,12 @@
 	<title>Input</title>
 </head>
 <body>
+
+
 	<h2>Please enter possilbe ISBN numbers below.</h2>
+	<p><%= session[:message] %></p>
 	<form method="post" action="input">
-		<input type="text" name="isbn">
+		<input type="text" name="isbn" autofocus>
 		<input type="submit" value="Submit">
 	</form>
 
