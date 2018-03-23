@@ -12,6 +12,7 @@ get "/" do
 	erb :welcome
 end
 
+
 get "/input" do
 	session[:f_name] = params[:f_name]
 	session[:l_name] = params[:l_name]
@@ -22,37 +23,34 @@ get "/input" do
 	# redirect "/input"
 end
 
+
 post "/input" do
 
-		if params[:isbn] == ""
-			session[:message] = "Please enter a number"
-			redirect "/retry"
+	num = params[:isbn]
+
+	prepared = prepare(num)
+
+	length_valid = validate_length(prepared)
+		if length_valid == false
+			is_valid = false
+		elsif prepared.length == 10
+			is_valid = validate_ten_number(prepared)
+		elsif prepared.length == 13
+			is_valid = validate_13_number(prepared)
 		end
-		num = params[:isbn]
 
-		prepared = prepare(num)
+		result = validate_is_number(num)
 
-		length_valid = validate_length(prepared)
-			if length_valid == false
-				is_valid = false
-			elsif prepared.length == 10
-				is_valid = validate_ten_number(prepared)
-			elsif prepared.length == 13
-				is_valid = validate_13_number(prepared)
-			end
+		if is_valid == true && result == true
+			is_valid = "Valid"
+		else
+			is_valid = "Invalid"
+		end
 
-			result = validate_is_number(num)
-
-			if is_valid == true && result == true
-				is_valid = "Valid"
-			else
-				is_valid = "Invalid"
-			end
-
-		session[:isbn] << [num, is_valid, session[:f_name], session[:l_name]]
+	session[:isbn] << [num, is_valid, session[:f_name], session[:l_name]]
 	erb :input
-
 end
+
 
 get "/retry" do
 	erb :input
