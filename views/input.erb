@@ -1,13 +1,13 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Input</title>
-</head>
-<body>
-
-
 	<h2>Please enter possilbe ISBN numbers below.</h2>
-	<p><%= session[:message] %></p>
+	<h2><%= session[:message] %></h2>
+
+	<%CSV.foreach("local_isbn.csv") do |row|%>
+		<%if row == [] || row == [" "]%>
+		<%elsif row[2] == session[:f_name] && row[3] == session[:l_name]%>
+			<p><%=row[0] %>: <%=row[1]%></p>
+		<% end %>
+		<% end %>
+
 	<form method="post" action="input">
 		<input type="text" name="isbn" autofocus required>
 		<input type="submit" value="Submit">
@@ -22,7 +22,3 @@
 <% session[:isbn].each do |num|  %>
  <h2><%= num[0] %>: <%= num[1] %></h2>
 <% end %>
-
-
-</body>
-</html>
