@@ -91,11 +91,12 @@ textarea {
 }
 
 
-div {
+.columns{
   margin-top: 50px;
-  text-align: center;
-  color: white;
+  text-align: left;
+  font-size: 20px;
+  color: black;
   background-color: transparent;
   border-bottom: none;
+  column-count: 4;
 }
-
