@@ -2,7 +2,9 @@
 <ul>
 <% @credentials.each do |credential| %>
 	<li>
-		<%= credential %>
+    <%= credential.id %>
+		<%= credential.username %>
+    <%= credential.password %>
 	</li>
 <% end %>
 </ul>

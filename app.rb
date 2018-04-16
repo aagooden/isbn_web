@@ -22,9 +22,10 @@ end
 
 
 post "/credentials" do
-	@username = Credential.new(params[:username])
-	@password = Credential.new(params[:password])
-	if @username.save && @password.save
+	@credential = Credential.new(params[:credential])
+
+
+	if @credential.save
 		redirect '/cred_index'
 	else
 		"Sorry, there was a problem"
