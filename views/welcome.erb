@@ -1,9 +1,70 @@
+<h3>Google Login</h3>
 
-	<h1>Welcome to ISBN Checker</h1>
-	<h2>Please enter your name below?</h2>
+<script type="text/javascript">
 
-	<form method="get" action="credentials">
-		<input type="text" name="f_name" autofocus required>
-		<input type="text" name="l_name" required>
-		<input type="submit" value="Submit">
-	</form>
+function onSignIn(googleUser) {
+  var profile = googleUser.getBasicProfile();
+  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+  console.log('Name: ' + profile.getName());
+  console.log('Image URL: ' + profile.getImageUrl());
+  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+}
+</script>
+
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<meta name="google-signin-client_id" content="ag-isbn-checker.apps.googleusercontent.com">
+<div class="g-signin2" data-onsuccess="onSignIn"></div>
+
+
+
+<h3>Facebook Login</h3>
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '427502157700569',
+      cookie     : true,
+      xfbml      : true,
+      version    : 'v2.8'
+    });
+
+
+	FB.getLoginStatus(function(response) {
+		console.log("Suck it")
+	    statusChangeCallback(response);
+	});
+
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+
+	 	console.log("This is a test");
+
+
+	 function statusChangeCallback(response) {
+		 console.log(response);
+		 console.log('Hitting the function');
+		 if(response.status === 'connected') {
+			 console.log('Logged in and Authenticated');
+		 }else{
+			 console.log('Not Authenticated');
+		 }
+	 }
+
+		function checkLoginState() {
+		  FB.getLoginStatus(function(response) {
+		    statusChangeCallback(response);
+		  });
+		}
+</script>
+
+
+<fb:login-button
+  scope="public_profile,email"
+  onlogin="checkLoginState();">
+</fb:login-button>
