@@ -1,14 +1,40 @@
+
 require 'rubygems'
 require 'fog'
 require 'csv'
 require "sinatra"
 require_relative "isbn_functions"
+require 'sinatra/activerecord'
+require './config/environments' #database configuration
+require "./models/model"
 enable :sessions
 
 
 get "/" do
 	session[:isbn] = Array.new
 	erb :welcome
+end
+
+
+get "/credentials" do
+	erb :credentials
+end
+
+
+post "/credentials" do
+	@username = Credential.new(params[:username])
+	@password = Credential.new(params[:password])
+	if @username.save && @password.save
+		redirect '/cred_index'
+	else
+		"Sorry, there was a problem"
+	end
+end
+
+
+get '/cred_index' do
+	@credentials = Credential.all
+	erb :cred_index
 end
 
 
