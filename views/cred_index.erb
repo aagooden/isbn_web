@@ -1,11 +1,12 @@
-<h3>All Credentials</h3>
+<h3>All Users</h3>
 <ul>
-<% @credentials.each do |credential| %>
+<% @users.each do |user| %>
 	<li>
-    <%= credential.id %>
-		<%= credential.username %>
-    <%= credential.password %>
+    <%= user.id %>
+		<%= user.username %>
+    <%= user.password_digest %>
+    <%= user.password %>
 	</li>
 <% end %>
 </ul>
-<a href="/">Back to Home</a>
+<a href="/input">Input ISBN numbers</a>

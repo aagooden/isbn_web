@@ -22,11 +22,9 @@ end
 
 
 post "/credentials" do
-	@credential = Credential.new(params[:credential])
-
-
-	if @credential.save
-		redirect '/cred_index'
+	@user = User.new(:username => params[:username], :password => params[:password], :f_name => params[:f_name], :l_name => params[:l_name])
+	if @user.save
+		redirect '/login'
 	else
 		"Sorry, there was a problem"
 	end
@@ -34,10 +32,27 @@ end
 
 
 get '/cred_index' do
-	@credentials = Credential.all
+	@users = User.all
 	erb :cred_index
 end
 
+
+get '/login' do
+	erb :login
+end
+
+post "/login" do
+    @user = User.find_by(:username => params[:username])
+
+    if @user && @user.authenticate(params[:password])
+			puts "The @user f_name is #{@user.f_name}"
+				session[:f_name] = @user.f_name
+				session[:l_name] = @user.l_name
+	      redirect "/cred_index"
+    else
+        redirect "/"
+    end
+end
 
 get "/input" do
 	CSV.foreach("local_isbn.csv") do |row|
@@ -45,10 +60,6 @@ get "/input" do
 			session[:message] = "Previous numbers you have checked: "
 		end
 	end
-	session[:message] = "Previous numbers you have checked:"
-	session[:f_name] = params[:f_name]
-	session[:l_name] = params[:l_name]
-
 	erb :input
 end
 
