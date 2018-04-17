@@ -6,7 +6,7 @@ require "sinatra"
 require_relative "isbn_functions"
 require 'sinatra/activerecord'
 require './config/environments' #database configuration
-require "./models/model"
+require "./models/user"
 enable :sessions
 
 
