@@ -34,6 +34,8 @@ function onSignIn(googleUser) {
 
 
 <h3>Facebook Login</h3>
+
+<!-- Must set up an app on facebook developer which contains info such as domain url, valid redirect url's, etc -->
 <script>
   window.fbAsyncInit = function() {
     FB.init({
@@ -74,12 +76,11 @@ function onSignIn(googleUser) {
 		}
 
 		// Redirect if logged into facebook
-		// FB.login(function(response) {
-    //  if (response.authResponse) {
-    //     window.top.location = "https://isbn-web.herokuapp.com/login";
-    //     });
-		//
-    //     }
+		FB.login(function(response) {
+     if (response.authResponse)
+        window.top.location = "https://isbn-web.herokuapp.com/login";
+			});
+
 </script>
 
 
