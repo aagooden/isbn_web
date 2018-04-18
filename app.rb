@@ -124,14 +124,30 @@ end
 
 
 get "/index" do
-
 	erb :index
-
-
 end
+
 
 get "/again" do
 	session[:isbn] = []
 	erb :input
+end
 
+
+get "/pay" do
+
+	session[:token] = params[:stripeToken]
+
+	erb :pay
+end
+
+
+post '/pay' do
+	session[:token] = params[:stripeToken]
+	session[:type] = params[:stripeTokenType]
+	session[:email] = params[:stripeEmail]
+
+		puts "The params are #{params.inspect}"
+			puts session[:token]
+	erb :pay_confirm
 end
