@@ -10,6 +10,10 @@ require "./models/user"
 
 enable :sessions
 
+configure do
+ $stdout.sync = true
+end
+
 
 get "/" do
 	session[:isbn] = Array.new
