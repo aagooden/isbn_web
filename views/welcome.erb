@@ -58,12 +58,8 @@ function onSignIn(googleUser) {
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
 
-	 	console.log("This is a test");
-
-
 	 function statusChangeCallback(response) {
 		 console.log(response);
-		 console.log('Hitting the function');
 		 if(response.status === 'connected') {
 			 console.log('Logged in and Authenticated');
 		 }else{
