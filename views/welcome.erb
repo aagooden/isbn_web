@@ -14,9 +14,13 @@ function onSignIn(googleUser) {
 	var profile = googleUser.getBasicProfile();
 	console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
 	console.log('Name: ' + profile.getName());
+	var name = profile.getId();
+	var email = profile.getEmail();
 	console.log('Image URL: ' + profile.getImageUrl());
 	console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
 }
+<input type="hidden" id="myField" value="" />
+document.getElementById('myField').value = name;
 </script>
 
 <!-- <input type="button" value="Google Sign-out" id="signout"> -->
