@@ -16,6 +16,19 @@ function onSignIn(googleUser) {
 }
 </script>
 
+<!-- <input type="button" value="Google Sign-out" id="signout"> -->
+<a href="#" onclick="signOut();">Sign out</a>
+
+<!--  ##### Note: This signout function will not work on localhost-->
+<script>
+  function signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+      console.log('User signed out.');
+    });
+  }
+</script>
+
 
 <h3>Facebook Login</h3>
 <script>
