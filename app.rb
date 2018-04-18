@@ -145,7 +145,7 @@ end
 
 get "/pay" do
 
-	session[:token] = params[:stripeToken]
+	# session[:token] = params[:stripeToken]
 
 	erb :pay
 end
@@ -154,10 +154,10 @@ end
 post '/pay' do
 	puts "***********************************************************************************"
 	puts "The params are #{params.inspect}"
-	session[:token] = params[:stripeToken]
-
-	session[:type] = params[:stripeTokenType]
-	session[:email] = params[:stripeEmail]
+	# session[:token] = params[:stripeToken]
+	#
+	# session[:type] = params[:stripeTokenType]
+	# session[:email] = params[:stripeEmail]
 
 	# puts "The params are #{params.inspect}"
 	# puts session[:token]
