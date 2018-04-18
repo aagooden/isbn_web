@@ -154,6 +154,7 @@ post '/pay' do
 
 	puts "The params are #{params.inspect}"
 	puts session[:token]
-	
+	puts "***********************************************************************************"
+
 	erb :pay_confirm
 end
