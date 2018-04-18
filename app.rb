@@ -38,6 +38,7 @@ end
 
 
 get '/login' do
+	puts "Here are the params from google #{params.inspect}"
 	erb :login
 end
 
