@@ -148,13 +148,16 @@ end
 
 
 post '/pay' do
+	puts "***********************************************************************************"
+	puts "The params are #{params.inspect}"
 	session[:token] = params[:stripeToken]
+
 	session[:type] = params[:stripeTokenType]
 	session[:email] = params[:stripeEmail]
 
-	puts "The params are #{params.inspect}"
-	puts session[:token]
-	puts "***********************************************************************************"
+	# puts "The params are #{params.inspect}"
+	# puts session[:token]
+	# puts "***********************************************************************************"
 
 	erb :pay_confirm
 end
