@@ -7,6 +7,7 @@ require_relative "isbn_functions"
 require 'sinatra/activerecord'
 require './config/environments' #database configuration
 require "./models/user"
+
 enable :sessions
 
 
@@ -23,11 +24,13 @@ end
 
 post "/credentials" do
 	@user = User.new(:username => params[:username], :password => params[:password], :f_name => params[:f_name], :l_name => params[:l_name])
+
 	if @user.save
 		redirect '/login'
 	else
 		"Sorry, there was a problem"
 	end
+
 end
 
 
@@ -51,7 +54,7 @@ post "/login" do
 				session[:l_name] = @user.l_name
 	      redirect "/cred_index"
     else
-        redirect "/"
+      redirect "/"
     end
 end
 
@@ -72,21 +75,22 @@ post "/input" do
 	prepared = prepare(num)
 
 	length_valid = validate_length(prepared)
-		if length_valid == false
-			is_valid = false
-		elsif prepared.length == 10
-			is_valid = validate_ten_number(prepared)
-		elsif prepared.length == 13
-			is_valid = validate_13_number(prepared)
-		end
 
-		result = validate_is_number(num)
+	if length_valid == false
+		is_valid = false
+	elsif prepared.length == 10
+		is_valid = validate_ten_number(prepared)
+	elsif prepared.length == 13
+		is_valid = validate_13_number(prepared)
+	end
 
-		if is_valid == true && result == true
-			is_valid = "Valid"
-		else
-			is_valid = "Invalid"
-		end
+	result = validate_is_number(num)
+
+	if is_valid == true && result == true
+		is_valid = "Valid"
+	else
+		is_valid = "Invalid"
+	end
 
 	session[:isbn] << [num, is_valid, session[:f_name], session[:l_name]]
 	erb :input
@@ -112,7 +116,7 @@ post "/index" do
 			l_name = info[3]
 
 			File.open('local_isbn.csv', "a+") do |file|
-		    	file.puts("#{num},#{is_valid},#{f_name},#{l_name}\n")
+		    file.puts("#{num},#{is_valid},#{f_name},#{l_name}\n")
 			end
 
 		end
@@ -148,7 +152,8 @@ post '/pay' do
 	session[:type] = params[:stripeTokenType]
 	session[:email] = params[:stripeEmail]
 
-		puts "The params are #{params.inspect}"
-			puts session[:token]
+	puts "The params are #{params.inspect}"
+	puts session[:token]
+	
 	erb :pay_confirm
 end
