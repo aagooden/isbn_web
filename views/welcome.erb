@@ -72,14 +72,20 @@ function onSignIn(googleUser) {
 		function checkLoginState() {
 		  FB.getLoginStatus(function(response) {
 		    statusChangeCallback(response);
+
+				FB.login(function(response) {
+				 if (response.authResponse) 
+						window.top.location = "https://isbn-web.herokuapp.com/login";
+					});
+
 		  });
 		}
 
 		// Redirect if logged into facebook
-		FB.login(function(response) {
-     if (response.authResponse)
-        window.top.location = "https://isbn-web.herokuapp.com/login";
-			});
+		// FB.login(function(response) {
+    //  if (response.authResponse) {
+    //     window.top.location = "https://isbn-web.herokuapp.com/login";
+		// 	});
 
 </script>
 
