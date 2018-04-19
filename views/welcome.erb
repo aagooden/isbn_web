@@ -10,32 +10,36 @@
 
 <script>
 function onSignIn(googleUser) {
-
 	console.log("This is rock and roll");
 	var profile = googleUser.getBasicProfile();
-
-	var f = document.createElement("form");
-	f.setAttribute('action',"/login");
-	f.setAttribute('method',"get");
-
-	var i = document.createElement("input");
-	i.setAttribute('type',"hidden");
-	i.setAttribute('name',"name");
-	i.setAttribute('value', "testingblahblahblah");
-
-	document.body.appendChild(f);
-
-	f.submit();
-	// console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-	// console.log('Name: ' + profile.getName());
+	console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+	console.log('Name: ' + profile.getName());
+	console.log('Image URL: ' + profile.getImageUrl());
+	console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
 	// var name = profile.getName();
 	// var email = profile.getEmail();
-	// console.log('Image URL: ' + profile.getImageUrl());
-	// console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+}
+
+function getRedirect() {
+console.log("This is rock and roll");
+
+var profile = googleUser.getBasicProfile();
+var f = document.createElement("form");
+f.setAttribute('action',"/login");
+f.setAttribute('method',"get");
+
+var i = document.createElement("input");
+i.setAttribute('type',"hidden");
+i.setAttribute('name',"name");
+i.setAttribute('value', "testingblahblahblah");
+
+document.body.appendChild(f);
+
+f.submit();
 }
 </script>
 
-<div class="g-signin2"  onclick="onSignIn"></div>
+<div class="g-signin2" data-onsuccess="onSignIn" onclick="getRedirect"></div>
 
 <!-- data-onsuccess="onSignIn" -->
 
