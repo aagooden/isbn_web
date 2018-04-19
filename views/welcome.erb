@@ -22,7 +22,7 @@ function onSignIn(googleUser) {
 
 	var f = document.getElementById('sendinfo');
 	var i = document.createElement("input");
-	i.attr('type','hidden');
+	i.setAttribute('type','hidden');
 	i.setAttribute('name',"name");
 	i.setAttribute('value', googleName);
 	f.appendChild(i);
