@@ -10,7 +10,7 @@
 
 <script>
 function onSignIn(googleUser) {
-	console.log("This is rock and roll");
+	console.log("This is onsignin");
 	var profile = googleUser.getBasicProfile();
 	console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
 	console.log('Name: ' + profile.getName());
@@ -21,7 +21,7 @@ function onSignIn(googleUser) {
 }
 
 function getRedirect() {
-console.log("This is rock and roll");
+console.log("This is getredirect");
 
 var profile = googleUser.getBasicProfile();
 var f = document.createElement("form");
