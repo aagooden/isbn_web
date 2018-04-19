@@ -20,11 +20,12 @@ function onSignIn(googleUser) {
 	console.log('Image URL: ' + profile.getImageUrl());
 	console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
 
+	var f = document.getElementById('sendinfo');
 	var i = document.createElement("input");
-	i.attr({type: 'hidden', name:'name', value: googleName}).appentTo('form');
-	// i.setAttribute('name',"name");
-	// i.setAttribute('value', googleName);
-	// f.appendChild(i);
+	i.attr('type','hidden');
+	i.setAttribute('name',"name");
+	i.setAttribute('value', googleName);
+	f.appendChild(i);
 
 	// console.log("This is getredirect");
 	//
