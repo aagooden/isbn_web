@@ -12,7 +12,7 @@
 function onSignIn(googleUser) {
 	console.log("This is onsignin");
 	var profile = googleUser.getBasicProfile();
-	var name = profile.getName();
+	var googleName = profile.getName();
 	console.log("The name variable is");
 	console.log(name);
 	console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
@@ -23,7 +23,8 @@ function onSignIn(googleUser) {
 	var i = document.createElement("input");
 	i.setAttribute('type',"hidden");
 	i.setAttribute('name',"name");
-	i.setAttribute('value', name);
+	i.setAttribute('value', googleName);
+	document.body.appendChild(i);
 
 
 
