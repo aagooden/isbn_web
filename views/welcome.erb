@@ -17,22 +17,22 @@ function onSignIn(googleUser) {
 	console.log('Image URL: ' + profile.getImageUrl());
 	console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
 
-	console.log("This is getredirect");
-
-
-	var f = document.createElement("form");
-	f.setAttribute('action',"/login");
-	f.setAttribute('method',"get");
-
-	var i = document.createElement("input");
-	i.setAttribute('type',"hidden");
-	i.setAttribute('name',"name");
-	i.setAttribute('value', "testingblahblahblah");
-
-	f.appendChild(i);
-	document.body.appendChild(f);
-
-	f.submit();
+	// console.log("This is getredirect");
+	//
+	//
+	// var f = document.createElement("form");
+	// f.setAttribute('action',"/login");
+	// f.setAttribute('method',"get");
+	//
+	// var i = document.createElement("input");
+	// i.setAttribute('type',"hidden");
+	// i.setAttribute('name',"name");
+	// i.setAttribute('value', "testingblahblahblah");
+	//
+	// f.appendChild(i);
+	// document.body.appendChild(f);
+	//
+	// f.submit();
 
 	// var name = profile.getName();
 	// var email = profile.getEmail();
@@ -58,7 +58,7 @@ f.submit();
 }
 </script>
 
-<div class="g-signin2" data-onsuccess="onSignIn" onclick="getRedirect"></div>
+<div class="g-signin2" data-onsuccess="onSignIn" onclick="getRedirect();"></div>
 
 <!-- data-onsuccess="onSignIn" -->
 
