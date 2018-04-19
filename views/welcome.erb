@@ -21,7 +21,7 @@ function onSignIn(googleUser) {
 	f.setAttribute('name',"name");
 	f.setAttribute('value', profile.getName());
 
-	f.body.appendChild(input);
+	document.body.appendChild(f);
 
 	f.submit();
 	// console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
