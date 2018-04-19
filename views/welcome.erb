@@ -20,6 +20,8 @@ function onSignIn(googleUser) {
 	console.log('Image URL: ' + profile.getImageUrl());
 	console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
 
+	return name;
+
 	// console.log("This is getredirect");
 	//
 	//
@@ -52,7 +54,7 @@ f.setAttribute('method',"get");
 var i = document.createElement("input");
 i.setAttribute('type',"hidden");
 i.setAttribute('name',"name");
-i.setAttribute('value', name);
+i.setAttribute('value', onSignIn());
 
 f.appendChild(i);
 document.body.appendChild(f);
