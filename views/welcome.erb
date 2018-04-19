@@ -1,8 +1,5 @@
 <h3>Google Login</h3>
-<form action="/login" method="get">
-	<input type="hidden" name="name" value="cheesebutter">
-	<input type="submit" value="test submit">
-</form>
+
 
 
 <script src="https://apis.google.com/js/platform.js" async defer></script>
@@ -16,13 +13,14 @@ function onSignIn(googleUser) {
 	var profile = googleUser.getBasicProfile();
 
 	var f = document.createElement("form");
-	f.setAttribute('method',"get");
 	f.setAttribute('action',"/login");
+	f.setAttribute('method',"get");
+
 
 	var input = document.createElement("input");
-	f.setAttribute('type',"hidden");
-	f.setAttribute('name',"name");
-	f.setAttribute('value', "testingblahblahblah");
+	input.setAttribute('type',"hidden");
+	input.setAttribute('name',"name");
+	input.setAttribute('value', "testingblahblahblah");
 
 	document.body.appendChild(f);
 
@@ -36,7 +34,7 @@ function onSignIn(googleUser) {
 }
 </script>
 
-<div class="g-signin2" id="myField"  onclick="onSignIn"></div>
+<div class="g-signin2" onclick="onSignIn"></div>
 
 <!-- <input type="button" value="Google Sign-out" id="signout"> -->
 <a href="#" onclick="signOut();">Sign out</a>
