@@ -19,11 +19,13 @@ function onSignIn(googleUser) {
 	console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
 }
 </script>
-<div class="g-signin2" id="myField" data-onsuccess="onSignIn" onclick="location.href='https://isbn-web.herokuapp.com/login'"></div>
+<div class="g-signin2" id="myField" data-onsuccess="onSignIn" onclick="location.href='https://isbn-web.herokuapp.com/login'">
+	<script>
+		document.getElementById('myField').name = name;
+	</script>
+</div>
 
-<script>
-	document.getElementById('myField').name = name;
-</script>
+
 
 
 <!-- <input type="button" value="Google Sign-out" id="signout"> -->
