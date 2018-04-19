@@ -7,7 +7,6 @@
 <meta name="google-signin-client_id" content="697255585429-724fv85j70mhpiuupuntchduf0o5fulv.apps.googleusercontent.com">
 <!-- <div class="g-signin2" data-onsuccess="onSignIn" onclick="location.href='https://isbn-web.herokuapp.com/input'"></div> -->
 <!--The line below is for development testing  -->
-<div class="g-signin2" data-onsuccess="onSignIn" onclick="location.href='https://isbn-web.herokuapp.com/login'"></div>
 
 <script>
 function onSignIn(googleUser) {
@@ -20,11 +19,13 @@ function onSignIn(googleUser) {
 	console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
 }
 </script>
-<input type="hidden" id="myField" value="" />
+<div class="g-signin2" data-onsuccess="onSignIn" name="<script>profile.getName()</script>" onclick="location.href='https://isbn-web.herokuapp.com/login'"></div>
+
+
+<!-- <input type="hidden" id="myField" value="" />
 <script>
 	document.getElementById('myField').value = name;
-	document.getElementById("myField").submit();
-</script>
+</script> -->
 
 
 <!-- <input type="button" value="Google Sign-out" id="signout"> -->
