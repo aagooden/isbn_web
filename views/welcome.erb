@@ -11,17 +11,29 @@
 <script>
 function onSignIn(googleUser) {
 	var profile = googleUser.getBasicProfile();
+
+	var f = document.createElement("form");
+	f.setAttribute('method',"get");
+	f.setAttribute('action',"/login");
+
+	var input = document.createElement("input");
+	f.setAttribute('type',"hidden");
+	f.setAttribute('name',"name");
+	f.setAttribute('value', profile.getName());
+
+	f.appendChild(input);
+
+	f.submit();
 	// console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
 	// console.log('Name: ' + profile.getName());
-	var name = profile.getName();
+	// var name = profile.getName();
 	// var email = profile.getEmail();
 	// console.log('Image URL: ' + profile.getImageUrl());
 	// console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-	return name;
 }
 </script>
-<div class="g-signin2" id="myField" data-onsuccess="onSignIn" onclick="(name="onSignIn" location.href='https://isbn-web.herokuapp.com/login'")"></div>
 
+<div class="g-signin2" id="myField" data-onsuccess="onSignIn" onclick="onSignIn"></div>
 
 <!-- <input type="button" value="Google Sign-out" id="signout"> -->
 <a href="#" onclick="signOut();">Sign out</a>
