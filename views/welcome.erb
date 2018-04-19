@@ -7,7 +7,7 @@
 <meta name="google-signin-client_id" content="697255585429-724fv85j70mhpiuupuntchduf0o5fulv.apps.googleusercontent.com">
 <!-- <div class="g-signin2" data-onsuccess="onSignIn" onclick="location.href='https://isbn-web.herokuapp.com/input'"></div> -->
 <!--The line below is for development testing  -->
-<form class="sendinfo" action="/login" method="get">
+<form id="sendinfo" action="/login" method="get">
 <script>
 function onSignIn(googleUser) {
 	console.log("This is onsignin");
@@ -46,7 +46,7 @@ function onSignIn(googleUser) {
 </form>
 
 <script>
-f = document.getElementsByClassName('sendinfo').submit();
+document.getElementById('sendinfo').submit();
 </script>
 
 
