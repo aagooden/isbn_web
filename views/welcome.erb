@@ -12,7 +12,7 @@
 function onSignIn(googleUser) {
 	var profile = googleUser.getBasicProfile();
 	// console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-	console.log('Name: ' + profile.getName());
+	// console.log('Name: ' + profile.getName());
 	var name = profile.getName();
 	// var email = profile.getEmail();
 	// console.log('Image URL: ' + profile.getImageUrl());
@@ -20,8 +20,7 @@ function onSignIn(googleUser) {
 	return name;
 }
 </script>
-
-<div class="g-signin2" id="myField" data-onsuccess="onSignIn" name="onSignIn" onclick="onSignIn"></div>
+<div class="g-signin2" id="myField" data-onsuccess="onSignIn" onclick="(name="onSignIn" location.href='https://isbn-web.herokuapp.com/login'")"></div>
 
 
 <!-- <input type="button" value="Google Sign-out" id="signout"> -->
