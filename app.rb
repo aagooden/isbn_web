@@ -46,7 +46,7 @@ end
 
 get '/login' do
 	puts "Here are the params from google #{params.inspect}"
-	session[:name] = params.inspect
+	session[:name] = params[:name]
 	erb :login
 end
 
