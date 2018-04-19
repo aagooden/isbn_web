@@ -11,12 +11,13 @@
 <script>
 function onSignIn(googleUser) {
 	var profile = googleUser.getBasicProfile();
-	console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-	console.log('Name: ' + profile.getName());
-	var name = profile.getId();
-	var email = profile.getEmail();
-	console.log('Image URL: ' + profile.getImageUrl());
-	console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+	// console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+	// console.log('Name: ' + profile.getName());
+	var name = profile.getName();
+	// var email = profile.getEmail();
+	// console.log('Image URL: ' + profile.getImageUrl());
+	// console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+	return name;
 }
 </script>
 <div class="g-signin2" id="myField" data-onsuccess="onSignIn" name="onSignIn" onclick="location.href='https://isbn-web.herokuapp.com/login'"></div>
