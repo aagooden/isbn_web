@@ -7,7 +7,7 @@
 <meta name="google-signin-client_id" content="697255585429-724fv85j70mhpiuupuntchduf0o5fulv.apps.googleusercontent.com">
 <!-- <div class="g-signin2" data-onsuccess="onSignIn" onclick="location.href='https://isbn-web.herokuapp.com/input'"></div> -->
 <!--The line below is for development testing  -->
-<form id="sendinfo" action="/login" method="get">
+<!-- <form id="sendinfo" action="/login" method="get"> -->
 <script>
 function onSignIn(googleUser) {
 	console.log("This is onsignin");
@@ -20,12 +20,18 @@ function onSignIn(googleUser) {
 	console.log('Image URL: ' + profile.getImageUrl());
 	console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
 
-	var f = document.getElementById('sendinfo');
-	var i = document.createElement("input");
-	i.setAttribute('type','hidden');
-	i.setAttribute('name',"name");
-	i.setAttribute('value', googleName);
-	f.appendChild(i);
+	// var f = document.getElementById('sendinfo');
+	// var i = document.createElement("input");
+	// i.setAttribute('type','hidden');
+	// i.setAttribute('name',"name[]");
+	// i.setAttribute('value', googleName);
+	// f.appendChild(i);
+	//
+	// document.getElementById('sendinfo').submit();
+	redirect "/login?name=googleName"
+}
+</script>
+</form>
 
 	// console.log("This is getredirect");
 	//
@@ -46,10 +52,7 @@ function onSignIn(googleUser) {
 
 	// var name = profile.getName();
 	// var email = profile.getEmail();
-	document.getElementById('sendinfo').submit();
-}
-</script>
-</form>
+
 
 
 
