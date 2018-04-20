@@ -47,62 +47,20 @@ function onSignIn(googleUser) {
 
 	f.appendChild(i);
 	document.body.appendChild(f);
-	f.submit();
 
-
-	//
-	// document.getElementById('sendinfo').submit();
-
+	function sendInfo() {
+		f.submit();
+	}
 
 	// redirect "/login?name=googleName"
 }
 </script>
 </form>
 
-	// console.log("This is getredirect");
-	//
-	//
-	// var f = document.createElement("form");
-	// f.setAttribute('action',"/login");
-	// f.setAttribute('method',"get");
-	//
-	// var i = document.createElement("input");
-	// i.setAttribute('type',"hidden");
-	// i.setAttribute('name',"name");
-	// i.setAttribute('value', "testingblahblahblah");
-	//
-	// f.appendChild(i);
 
 
-	// var name = profile.getName();
-	// var email = profile.getEmail();
+<div class="g-signin2" data-onsuccess="onSignIn" onclick="sendInfo()"></div>
 
-
-
-
-<!-- function getRedirect() {
-console.log("This is getredirect");
-
-var profile = googleUser.getBasicProfile();
-var f = document.createElement("form");
-f.setAttribute('action',"/login");
-f.setAttribute('method',"get");
-
-var i = document.createElement("input");
-i.setAttribute('type',"hidden");
-i.setAttribute('name',"name");
-i.setAttribute('value', onSignIn());
-
-f.appendChild(i);
-document.body.appendChild(f);
-
-f.submit();
-} -->
-<!-- </script> -->
-
-<div class="g-signin2" data-onsuccess="onSignIn"></div>
-
-<!-- data-onsuccess="onSignIn" -->
 
 <!-- <input type="button" value="Google Sign-out" id="signout"> -->
 <a href="#" onclick="signOut();">Sign out</a>
