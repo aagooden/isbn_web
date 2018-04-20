@@ -103,8 +103,6 @@ function sendInfo() {
 function(response) {
 	console.log("The FB response is");
 	console.log(response);
-	console.log("The user-id is");
-	console.log(user-id);
 		// Insert your code here
 }
 );
@@ -142,11 +140,12 @@ function(response) {
       console.log('Welcome!  Fetching your information.... ');
       FB.api('me?fields=id,name,first_name,last_name', function (response) {
           console.log('Successful login for: ' + response.name);
-          document.getElementById('status').innerHTML =
-              'Thanks for logging in, ' + response.name + '!';
-          alert(response.first_name);
-          $('#fName').text(response.first_name);
-          $('#lName').text(response.last_name);
+					console.log(first_name + " " + last_name);
+          // document.getElementById('status').innerHTML =
+          //     'Thanks for logging in, ' + response.name + '!';
+          // alert(response.first_name);
+          // $('#fName').text(response.first_name);
+          // $('#lName').text(response.last_name);
       });
 		}
 
