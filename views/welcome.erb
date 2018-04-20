@@ -7,28 +7,54 @@
 <meta name="google-signin-client_id" content="697255585429-724fv85j70mhpiuupuntchduf0o5fulv.apps.googleusercontent.com">
 <!-- <div class="g-signin2" data-onsuccess="onSignIn" onclick="location.href='https://isbn-web.herokuapp.com/input'"></div> -->
 <!--The line below is for development testing  -->
-<!-- <form id="sendinfo" action="/login" method="get"> -->
+
+
+<form id="sendinfo" action="/login" method="get">
 <script>
 function onSignIn(googleUser) {
 	console.log("This is onsignin");
 	var profile = googleUser.getBasicProfile();
 	var googleName = profile.getName();
-	console.log("The name variable is");
-	console.log(name);
-	console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-	console.log('Name: ' + profile.getName());
-	console.log('Image URL: ' + profile.getImageUrl());
-	console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+	var googleEmail = profile.getEmail();
+	var googleImage = profile.getImageUrl();
 
-	// var f = document.getElementById('sendinfo');
-	// var i = document.createElement("input");
-	// i.setAttribute('type','hidden');
-	// i.setAttribute('name',"name[]");
-	// i.setAttribute('value', googleName);
-	// f.appendChild(i);
+	// console.log("The name variable is");
+	// console.log(name);
+	// console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+	// console.log('Name: ' + profile.getName());
+	// console.log('Image URL: ' + profile.getImageUrl());
+	// console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+
+	var f = document.getElementById('sendinfo');
+	var i = document.createElement("input");
+	i.setAttribute('type','hidden');
+	i.setAttribute('name',"name[]");
+	i.setAttribute('value', googleName);
+	f.appendChild(i);
+
+	var j = document.createElement("input");
+	j.setAttribute('type','hidden');
+	j.setAttribute('name',"name[]");
+	j.setAttribute('value', googleName);
+	f.appendChild(j);
+
+	var k = document.createElement("input");
+	k.setAttribute('type','hidden');
+	k.setAttribute('name',"name[]");
+	k.setAttribute('value', googleName);
+	f.appendChild(k);
+
+
+	f.appendChild(i);
+	document.body.appendChild(f);
+	f.submit();
+
+
 	//
 	// document.getElementById('sendinfo').submit();
-	redirect "/login?name=googleName"
+
+
+	// redirect "/login?name=googleName"
 }
 </script>
 </form>
@@ -46,9 +72,7 @@ function onSignIn(googleUser) {
 	// i.setAttribute('value', "testingblahblahblah");
 	//
 	// f.appendChild(i);
-	// document.body.appendChild(f);
-	//
-	// f.submit();
+
 
 	// var name = profile.getName();
 	// var email = profile.getEmail();
