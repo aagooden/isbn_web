@@ -128,6 +128,17 @@ function sendInfo() {
 		  });
 		}
 
+		FB.api(
+  '/{user-id}',
+  'GET',
+  {},
+  function(response) {
+		console.log("The FB response is");
+		console.log(response);
+      // Insert your code here
+  }
+);
+
 		// Redirect if logged into facebook
 		// FB.login(function(response) {
     //  if (response.authResponse) {
