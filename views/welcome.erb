@@ -91,10 +91,21 @@ function sendInfo() {
       xfbml      : true,
       version    : 'v2.8'
     });
+
+
 	FB.getLoginStatus(function(response) {
 	    statusChangeCallback(response);
 	});
-
+	FB.api(
+'/{user-id}',
+'GET',
+{},
+function(response) {
+	console.log("The FB response is");
+	console.log(response);
+		// Insert your code here
+}
+);
   };
 
   (function(d, s, id){
@@ -124,16 +135,6 @@ function sendInfo() {
 					});
 
 		  });
-			FB.api(
-		'/{user-id}',
-		'GET',
-		{},
-		function(response) {
-			console.log("The FB response is");
-			console.log(response);
-				// Insert your code here
-		}
-	);
 		}
 
 
