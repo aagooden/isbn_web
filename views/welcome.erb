@@ -48,14 +48,20 @@ function onSignIn(googleUser) {
 	f.appendChild(i);
 	document.body.appendChild(f);
 
-	function sendInfo() {
-		f.submit();
-	}
 
 	// redirect "/login?name=googleName"
 }
 </script>
 </form>
+
+<script>
+function sendInfo() {
+	var f = document.getElementById('sendinfo');
+	f.submit();
+}
+
+
+</script>
 
 
 
