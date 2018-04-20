@@ -10,6 +10,7 @@ require "./models/user"
 
 enable :sessions
 
+
 configure do
  $stdout.sync = true
 end
