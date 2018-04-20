@@ -139,7 +139,7 @@ function(response) {
 		function testAPI() {
       console.log('Welcome!  Fetching your information.... ');
       FB.api('me?fields=id,name,first_name,last_name', function (response) {
-					console.log(rsponse);
+					console.log(response);
           console.log('Successful login for: ' + response.name);
 					console.log(response.first_name + " " + response.last_name);
           // document.getElementById('status').innerHTML =
