@@ -141,7 +141,7 @@ function(response) {
       FB.api('me?fields=id,name,first_name,last_name', function (response) {
 					console.log(response);
           console.log('Successful login for: ' + response.name);
-					console.log(response.first_name + " " + response.last_name);
+					console.log(first_name + " " + last_name);
           // document.getElementById('status').innerHTML =
           //     'Thanks for logging in, ' + response.name + '!';
           // alert(response.first_name);
