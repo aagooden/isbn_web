@@ -11,10 +11,14 @@
 <meta name="google-signin-client_id" content="697255585429-724fv85j70mhpiuupuntchduf0o5fulv.apps.googleusercontent.com">
 <!-- <div class="g-signin2" data-onsuccess="onSignIn" onclick="location.href='https://isbn-web.herokuapp.com/input'"></div> -->
 
+<script>
+window.onbeforeunload = function(e){
+	gapi.auth2.getAuthInstance().signOut();
+};
+</script>
 
 
-
-<div class="g-signin2" onclick="onSignIn()" ></div>
+<div class="g-signin2" data-onsuccess="onSignIn"></div>
 <!-- onclick="sendInfo()" -->
 <!-- data-onsuccess="onSignIn" -->
 
