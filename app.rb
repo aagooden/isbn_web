@@ -29,8 +29,10 @@ post "/google_success" do
 end
 
 
-post "/facebook_success" do
-
+get "/facebook_success" do
+  session[:f_name] = params[:f_name]
+  session[:l_name] = params[:l_name]
+  redirect "input"
 end
 
 
