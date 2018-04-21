@@ -101,6 +101,6 @@ textarea {
   column-count: 4;
 }
 
-.sendinfo {
+#sendinfo {
   text-align: center;
 }
