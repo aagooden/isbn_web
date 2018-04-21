@@ -52,18 +52,21 @@ function onSignIn(googleUser) {
 	// redirect "/login?name=googleName"
 }
 </script>
+
+<input type="submit" value="Facebook Signin">
+
 </form>
 
-<script>
+<%# <script>
 function sendInfo() {
 	var f = document.getElementById('sendinfo');
 	f.submit();
 }
-</script>
+</script> %>
 
 
 
-<%# <div class="g-signin2" data-onsuccess="onSignIn" onclick="sendInfo()"></div> %>
+<div class="g-signin2" data-onsuccess="onSignIn" onclick="sendInfo()"></div>
 
 
 <!-- <input type="button" value="Google Sign-out" id="signout"> -->
