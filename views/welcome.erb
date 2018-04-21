@@ -5,9 +5,9 @@
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 
 <!-- ##### The client id comes from setting up a project on google developer site...can set origin url's etc -->
-<meta name="google-signin-client_id" content="697255585429-724fv85j70mhpiuupuntchduf0o5fulv.apps.googleusercontent.com">
+<meta name="google-signin-client_id" >
 <!-- <div class="g-signin2" data-onsuccess="onSignIn" onclick="location.href='https://isbn-web.herokuapp.com/input'"></div> -->
-
+<!-- content="697255585429-724fv85j70mhpiuupuntchduf0o5fulv.apps.googleusercontent.com" -->
 
 <form id="sendinfo" action="/login" method="get">
 <script>
@@ -57,12 +57,12 @@ function onSignIn(googleUser) {
 
 </form>
 
-<%# <script>
+ <!-- <script>
 function sendInfo() {
 	var f = document.getElementById('sendinfo');
 	f.submit();
 }
-</script> %>
+</script> -->
 
 
 
