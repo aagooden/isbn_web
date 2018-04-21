@@ -4,16 +4,16 @@
 
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 
-<script>
-	gapi.auth2.getAuthInstance().signOut();
-</script>
+
 
 
 <!-- ##### The client id comes from setting up a project on google developer site...can set origin url's etc -->
 <meta name="google-signin-client_id" content="697255585429-724fv85j70mhpiuupuntchduf0o5fulv.apps.googleusercontent.com">
 <!-- <div class="g-signin2" data-onsuccess="onSignIn" onclick="location.href='https://isbn-web.herokuapp.com/input'"></div> -->
 
-
+<script>
+	gapi.auth2.getAuthInstance().signOut();
+</script>
 
 
 <div class="g-signin2" data-onsuccess="onSignIn"></div>
