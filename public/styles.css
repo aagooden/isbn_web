@@ -4,7 +4,9 @@
 }*/
 
 body {
-  background-color: #AEB6BF;
+  background-image: url("/books.jpg");
+  background-repeat:no-repeat;
+  background-position:center;
   font-family: "Helvetica", Arial, sans-serif;
   padding: 40px;
   text-align: center;
@@ -107,4 +109,20 @@ textarea {
 
 .googlebutton > div{
   margin: 0 auto;
+}
+
+
+
+.flex-container {
+  display: flex;
+  flex-direction: column;
+  /* min-height: 100vh; */
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+  padding: 1%;
+  margin: 1%;
+  border-color: black;
+  border-style: inset;
+  border-width: 5px;
+  width: 90%;
 }
