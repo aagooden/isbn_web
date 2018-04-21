@@ -18,7 +18,6 @@
 <!-- data-onsuccess="onSignIn" -->
 
 <form id="sendinfo" action="/google_success" method="post">
-
 <script>
 
 function onFailure(error) {
@@ -82,6 +81,7 @@ function renderButton() {
 </script>
 
 </form>
+<br>
 
 <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
 
@@ -200,7 +200,7 @@ function(response) {
   scope="public_profile,email"
   onlogin="testAPI();">
 	<!-- checkLoginState(); -->
-</fb:login-button>
+</fb:login-button><br>
 
 
 <h3>Username and Password Login</h3>
