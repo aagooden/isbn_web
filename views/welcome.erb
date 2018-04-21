@@ -46,7 +46,7 @@ function onSignIn(googleUser) {
 	k.setAttribute('name',"name[]");
 	k.setAttribute('value', googleImage);
 	f.appendChild(k);
-
+	f.submit();
 
 	f.appendChild(i);
 	document.body.appendChild(f);
@@ -55,8 +55,6 @@ function onSignIn(googleUser) {
 	// redirect "/login?name=googleName"
 }
 </script>
-
-<input type="submit" value="Facebook Signin">
 
 </form>
 
