@@ -117,7 +117,7 @@ textarea {
   display: flex;
   flex-direction: column;
   /* min-height: 100vh; */
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.6);
   border-radius: 10px;
   padding: 1%;
   margin: 1%;
