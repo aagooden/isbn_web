@@ -91,7 +91,7 @@ textarea {
 }
 
 
-.columns{
+.columns {
   margin-top: 50px;
   text-align: left;
   font-size: 20px;
@@ -99,4 +99,8 @@ textarea {
   background-color: transparent;
   border-bottom: none;
   column-count: 4;
+}
+
+.sendinfo {
+  text-align: center;
 }
