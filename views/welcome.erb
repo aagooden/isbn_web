@@ -13,7 +13,7 @@
 
 
 
-<div id="g-signin2"></div>
+<div id="my-signin2"></div>
 <!-- onclick="sendInfo()" -->
 <!-- data-onsuccess="onSignIn" -->
 
@@ -27,9 +27,6 @@ function onFailure(error) {
 function onSuccess(googleUser) {
 	console.log("This is onsuccess");
 	var profile = googleUser.getBasicProfile();
-
-
-
 	var googleName = profile.getName();
 	var googleEmail = profile.getEmail();
 	var googleImage = profile.getImageUrl();
