@@ -101,10 +101,10 @@ textarea {
   column-count: 4;
 }
 
-#g-signin2{
+.googlebutton{
   width: 100%;
 }
 
-#g-signin2 > div{
+.googlebutton > div{
   margin: 0 auto;
 }
