@@ -21,6 +21,18 @@ get "/" do
 	erb :welcome
 end
 
+post "/google_success" do
+  split_name = params[:name][2].split(" ")
+  session[:f_name] = split_name[0]
+  session[:l_name] = split_name[1]
+  redirect "/input"
+end
+
+
+post "/facebook_success" do
+
+end
+
 
 get "/credentials" do
 	erb :credentials
@@ -28,6 +40,8 @@ end
 
 
 post "/credentials" do
+
+
 	@user = User.new(:username => params[:username], :password => params[:password], :f_name => params[:f_name], :l_name => params[:l_name])
 
 	if @user.save
