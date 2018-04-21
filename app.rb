@@ -30,6 +30,7 @@ end
 
 
 get "/facebook_success" do
+  puts "*****************************The params are #{params.inspect}*****************************"
   session[:f_name] = params[:f_name]
   session[:l_name] = params[:l_name]
   redirect "input"
