@@ -11,15 +11,9 @@
 <meta name="google-signin-client_id" content="697255585429-724fv85j70mhpiuupuntchduf0o5fulv.apps.googleusercontent.com">
 <!-- <div class="g-signin2" data-onsuccess="onSignIn" onclick="location.href='https://isbn-web.herokuapp.com/input'"></div> -->
 
-<script>
-	var auth2 = gapi.auth2.getAuthInstance();
-	auth2.signOut().then(function () {
-		alert('User signed out.');
-	});
-</script>
 
 
-<div class="g-signin2" data-onsuccess="onSignIn"></div>
+<div class="g-signin2" data-onsuccess="onSignIn" onclick="sendInfo()"></div>
 <!-- onclick="sendInfo()" -->
 <!-- data-onsuccess="onSignIn" -->
 
@@ -28,9 +22,15 @@
 function onSignIn(googleUser) {
 	console.log("This is onsignin");
 	var profile = googleUser.getBasicProfile();
+
+
+
 	var googleName = profile.getName();
 	var googleEmail = profile.getEmail();
 	var googleImage = profile.getImageUrl();
+
+	var auth2 = gapi.auth2.getAuthInstance();
+			auth2.disconnect();
 
 	// console.log("The name variable is");
 	// console.log(name);
@@ -57,7 +57,6 @@ function onSignIn(googleUser) {
 	k.setAttribute('name',"name[]");
 	k.setAttribute('value', googleImage);
 	f.appendChild(k);
-	f.submit();
 
 	f.appendChild(i);
 	document.body.appendChild(f);
@@ -78,12 +77,13 @@ function onSignIn(googleUser) {
     });
   }
 </script>
- <!-- <script>
+
+ <script>
 function sendInfo() {
 	var f = document.getElementById('sendinfo');
 	f.submit();
 }
-</script> -->
+</script>
 
 
 
