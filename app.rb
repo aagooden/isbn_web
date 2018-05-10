@@ -30,7 +30,6 @@ end
 
 
 get "/facebook_success" do
-  puts "*****************************The params are #{params.inspect}*****************************"
   session[:f_name] = params[:f_name]
   session[:l_name] = params[:l_name]
   redirect "input"
@@ -43,8 +42,6 @@ end
 
 
 post "/credentials" do
-
-
 	@user = User.new(:username => params[:username], :password => params[:password], :f_name => params[:f_name], :l_name => params[:l_name])
 
 	if @user.save
@@ -63,7 +60,6 @@ end
 
 
 get '/login' do
-	puts "Here are the params from google #{params.inspect}"
 	session[:name] = params[:name]
 	erb :login
 end
@@ -176,16 +172,11 @@ end
 
 
 post '/pay' do
-	puts "***********************************************************************************"
 	puts "The params are #{params.inspect}"
 	session[:token] = params[:stripeToken]
 
 	session[:type] = params[:stripeTokenType]
 	session[:email] = params[:stripeEmail]
-
-	# puts "The params are #{params.inspect}"
-	# puts session[:token]
-	# puts "***********************************************************************************"
 
 	erb :pay_confirm
 end

@@ -17,7 +17,7 @@ def get_file()
 	#this gets "isbn_numbers.csv" file from AWS
 end
 
-	
+
 def save_file()
 	bucket = connect().directories.new(key: 'isbnnumbers')
 
@@ -61,13 +61,16 @@ def validate_ten_number(num)
 	valid = true
 
 #setting my check sum here... if it is "x" or "X" check sum is 10 else check is converted to integer for following calculation
-	check = num[num.length - 1]
 
-	if check == "x" || check =="X"
-		check = 10
-	else
-		check = check.to_i
-	end
+
+	check = num[num.length - 1].downcase == "x" ? 10 : num[num.length - 1].to_i
+
+	#
+	# if check.downcase == "x"
+	# 	check = 10
+	# else
+	# 	check = check.to_i
+	# end
 
 
 #performing validation math
@@ -80,7 +83,7 @@ def validate_ten_number(num)
 	for x in (0..num.length - 2) do
 		char = num[x].to_i
 		sum = sum + (char * counter)
-		counter +=1 
+		counter +=1
 	end
 
 #final comparison for validation
@@ -109,7 +112,7 @@ def validate_13_number(num)
 
 #main validation calculation
 	for x in (0...num.length - 1) do
-		if switch == true 
+		if switch == true
 			multiplier = 1
 		else
 			multiplier = 3
