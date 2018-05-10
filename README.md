@@ -1,6 +1,6 @@
 # ISBN Checker Web
 
-ISBN Checker Web is a web-based application that allows users to determine if ISBN numbers are valid.  It allows login with Facebook and Google or with a custom username and password.  A pay option is also available (which is not live but uses "sandbox" accounts) for Stripe and PayPal.  This was one of the final projects in the Mined Minds Bootcamp.      
+ISBN Checker Web is a web-based application that allows users to determine if ISBN numbers are valid.  It allows login with Facebook and Google or with a custom username and password.  A pay option is also available (which is not live but uses "sandbox" accounts) for Stripe and PayPal.  This was one of the projects in the Mined Minds Bootcamp.      
 
 ### Features
 * Check 10 or 13 digit ISBN numbers to determine valid or invalid.
