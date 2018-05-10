@@ -11,7 +11,7 @@ ISBN Checker Web is a web-based application that allows users to determine if IS
 Open your computer terminal.
 Enter in terminal...
 ```sh
-$ https://github.com/aagooden/isbn_web
+$ git clone https://github.com/aagooden/isbn_web
 ```
 ### To Start The App:
 Enter in terminal in directory where app was cloned
